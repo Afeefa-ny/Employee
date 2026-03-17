@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="mb-4 text-center">Employee List</h2>
+
+<table class="table table-bordered table-hover text-center">
+    <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Department</th>
+            <th>Email</th>
+                        <th>Action</th>
+
+
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for e in employees %}
+        <tr>
+            <td>
+                <a href="{% url 'detail' e.id %}" class="text-decoration-none">
+                    {{ e.name }}
+                </a>
+            </td>
+            <td>{{ e.role }}</td><td>
+            <a href="{% url 'detail' e.id %}" class="text-decoration-none">
+                    {{ e.department }}
+                </a></td>
+            <td>{{ e.email }}</td>
+            <td>
+                <a href="{% url 'update' e.id %}" class="btn btn-warning btn-sm">Edit</a>
+          
+                <a href="{% url 'delete' e.id %}" class="btn btn-danger btn-sm">
+                    Delete
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">No Employees Found</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
